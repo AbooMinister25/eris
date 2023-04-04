@@ -1,0 +1,121 @@
+use std::fmt;
+
+#[derive(Debug, PartialEq, Eq, Clone, Hash)]
+pub enum TokenKind {
+    // Punctuation
+    OpenParen,
+    CloseParen,
+    OpenBracket,
+    CloseBracket,
+    OpenBrace,
+    CloseBrace,
+    Comma,
+    Dot,
+    Semicolon,
+    Colon,
+
+    // Operators
+    Equal,
+    EqualEqual,
+    BangEqual,
+    Greater,
+    GreaterEqual,
+    Less,
+    LessEqual,
+    Plus,
+    PlusEqual,
+    Minus,
+    MinusEqual,
+    Star,
+    StarEqual,
+    Slash,
+    SlashEqual,
+
+    // Literals
+    String(String),
+    Char(char),
+    Integer(String),
+    Float(String),
+
+    // Identifiers
+    Ident(String),
+
+    // Keywords
+    And,
+    Case,
+    Else,
+    False,
+    For,
+    Fun,
+    If,
+    In,
+    Import,
+    Let,
+    Mut,
+    Not,
+    Or,
+    Pub,
+    Return,
+    True,
+    While,
+
+    // Misc
+    Error(String),
+    EoF,
+}
+
+impl fmt::Display for TokenKind {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            Self::OpenParen => write!(f, "("),
+            Self::CloseParen => write!(f, ")"),
+            Self::OpenBracket => write!(f, "["),
+            Self::CloseBracket => write!(f, "]"),
+            Self::OpenBrace => write!(f, "{{"),
+            Self::CloseBrace => write!(f, "}}"),
+            Self::Comma => write!(f, ","),
+            Self::Dot => write!(f, "."),
+            Self::Semicolon => write!(f, ";"),
+            Self::Colon => write!(f, ":"),
+            Self::Equal => write!(f, "="),
+            Self::EqualEqual => write!(f, "=="),
+            Self::BangEqual => write!(f, "!="),
+            Self::Greater => write!(f, ">"),
+            Self::GreaterEqual => write!(f, ">="),
+            Self::Less => write!(f, "<"),
+            Self::LessEqual => write!(f, "<="),
+            Self::Plus => write!(f, "+"),
+            Self::PlusEqual => write!(f, "+="),
+            Self::Minus => write!(f, "-"),
+            Self::MinusEqual => write!(f, "-="),
+            Self::Star => write!(f, "*"),
+            Self::StarEqual => write!(f, "*="),
+            Self::Slash => write!(f, "/"),
+            Self::SlashEqual => write!(f, "/="),
+            Self::String(s) => write!(f, "string({s})"),
+            Self::Char(c) => write!(f, "char({c})"),
+            Self::Integer(i) => write!(f, "integer({i})"),
+            Self::Float(fl) => write!(f, "float({fl})"),
+            Self::Ident(i) => write!(f, "ident({i})"),
+            Self::And => write!(f, "and"),
+            Self::Case => write!(f, "case"),
+            Self::Else => write!(f, "else"),
+            Self::False => write!(f, "false"),
+            Self::For => write!(f, "for"),
+            Self::Fun => write!(f, "fun"),
+            Self::If => write!(f, "if"),
+            Self::In => write!(f, "in"),
+            Self::Import => write!(f, "import"),
+            Self::Let => write!(f, "let"),
+            Self::Mut => write!(f, "mut"),
+            Self::Not => write!(f, "not"),
+            Self::Or => write!(f, "or"),
+            Self::Pub => write!(f, "pub"),
+            Self::Return => write!(f, "return"),
+            Self::True => write!(f, "true"),
+            Self::While => write!(f, "while"),
+            Self::Error(s) => write!(f, "{}", s),
+            Self::EoF => write!(f, "End of File"),
+        }
+    }
+}
